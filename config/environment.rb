@@ -55,7 +55,7 @@ end
 
 # Include your application configuration below
 #require_gem 'acts_as_taggable'
-gem 'acts_as_taggable'
+#gem 'acts_as_taggable'
 
 SITE_DOMAIN = '0.0.0.0'
 SITE_NAME = 'Music Knows'
