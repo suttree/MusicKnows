@@ -1,0 +1,33 @@
+New App Setup
+=============
+
+If you're reading this, then you've checked out a copy of this codebase from eco.local,
+most likely using svn co svn://10.0.1.2/sites/site_template
+
+Now, you need to switch this code from the site_template repository to a new repository,
+namely the new app. To start with, remove all svn files and folders using the following
+tip (http://www.bigbold.com/snippets/posts/show/2486).
+
+find . -name ".svn" -exec rm -rf {} \;
+
+Check this has worked by running 'svn info', which should return an error. Next, you'll
+want to add the codebase into a new svn repository.
+
+svn import new_app svn://10.0.1.2/sites/new_app -m "Initial import"
+rm -rf new_app
+svn co svn://10.0.1.2/sites/new_app
+
+Finally, you'll want to add the code to a new svn repository, using the following tip
+(http://textsnippets.com/posts/show/596).
+
+svn remove log/*
+svn commit -m "Removed log files"
+svn propset svn:ignore "*.log" log/
+svn update log/
+svn commit -m "Ignoring log files"
+svn remove tmp/*
+svn propset svn:ignore "*" tmp/
+svn update tmp/
+svn commit -m "Ignoring temp folder"
+
+And that's it! Happy coding :D

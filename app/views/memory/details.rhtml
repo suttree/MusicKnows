@@ -1,0 +1,88 @@
+<%= render_partial "partials/breadcrumb_date" -%>
+
+<div class='hreview'>
+  <span class='item'>
+
+  <h4 class='memory_title'><span class='fn'><%= h(@memory.title) -%></span></h4>
+
+  <div class='friends'>
+    <fieldset>
+      <legend>Who else was there?</legend>
+      <div id='friendslist'>
+        <%= render :partial => "partials/friendslist" %>
+      </div>
+
+      <% if @memory.user.id == session[:user].id %>
+        <hr class='partial' />
+        <i><a href='#' onclick="Element.toggle('pick_friends');return false;">Add/hide friends?</a></i>
+        <div class='pick_friends' id='pick_friends' style='display: none; height: 100%;'>
+          <% for friend in @user.friends %>
+            <% friend = User.find(friend.id) %>
+            <li class='thumb'>
+              <b><%= friend.nickname %></b>
+              <% if friend.photo %>
+                <img src='<%= friend.photo.public_filename(:avatar) -%>' class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %>'></a>
+              <% else %>
+                <img src='/images/icons/blue/user.gif' width='50' height='50'  class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %>'>
+              <% end %>
+              <%= draggable_element("shot_" + friend.id.to_s, :revert => true) %>
+            </li>
+          <% end %>
+
+          <div class='drop_friends' id='drop_friends'>
+            <div id="picklist">
+              <%= render :partial => "partials/picklist" %>
+            </div>
+            <div style="clear:both;"></div>
+            <%= drop_receiving_element "drop_friends", 
+                  :update => "friendslist", :url => { :action => "add_friend", :memory_id => @memory.id },
+                  :accept => "shot",
+                  :loading => "Element.show('indicator')",
+                  :complete => "Element.hide('indicator')" %>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <% if @memory.photo %>
+    <a href='<%= @memory.photo.public_filename %>' alt='Image link' title='Click for full size image'><img src='<%= @memory.photo.public_filename(:normal) %>' class='thumb'></a>
+  <% end %>
+
+  <h5 class='memory_user'>
+    <span class="reviewer vcard">
+      by <span class="fn"><a class='url' href='http://www.musicknows.com/members/profile/<%= @memory.user.nickname -%>'><%= h(@memory.user.nickname) -%></a></span>.
+    </span>
+    <% if @memory.user.id == session[:user].id -%>
+      <a href='/memory/edit/<%= @memory.id -%>'>(Edit this entry?)</a>
+    <% end -%>
+    <br/>
+    Tags:
+    <% for tag in @memory.tags -%>
+      <a href='/tag/<%= urlnameify(tag.name) -%>' rel='tag'><%= tag.name -%></a> 
+    <% end -%>
+  </h5>
+
+  <div class='description'><p>
+    <%= linkify(@memory.body) -%>
+  </p></div>
+
+  </span>
+</div>
+
+<h4 class='memory_comments'>Comments</h4>
+
+<% if @memory.comments.size > 0 -%> 
+  <ol id="comment-" class="comment-list">
+      <%= render_collection_of_partials "partials/commentset", @memory.comments.sort_by {|c| c.id}.reject { |c| c.parent_id } -%>
+  </ol>   
+<% else -%>
+    <span>  
+      <i>No comments at this time</i>
+    </span> 
+  </p>    
+<% end -%> 
+
+<hr/>
+
+<%= render_partial "partials/new_comment" -%>

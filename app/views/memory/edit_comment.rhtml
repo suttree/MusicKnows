@@ -1,0 +1,13 @@
+<h4 class='memory_comments'><img src="/images/icons/blue/comment.gif">&nbsp;Editing comment</h4>
+
+<form action='/memory/update_comment/<%= @comment.id -%>' method='post'>
+  <p><label for="comment_title">Title</label><br/>
+  <%= text_field :comment, :title -%>
+
+  <p><label for="comment_body">Body</label><br/>
+  <textarea cols="50" id="comment_body" name="comment[body]" rows="10"><%= @comment.body -%></textarea></p> 
+
+  <p>
+    <input type='submit' value='Edit comment'/>
+  </p>
+</form>

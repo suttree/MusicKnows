@@ -1,0 +1,33 @@
+<% if @memory.friends.size == 0 %>
+  <ul><li><i>Seems like no-one else was there!</i></li></ul>
+<% end %>
+<% for friend in @memory.friends %>
+    <% friend = User.find(friend.id) %>
+    <li class='thumb'>
+      <% if @memory.user.id == session[:user].id %>
+				<%= link_to_remote "Remove?",
+				      :update => "friendslist",
+				      :url => { :action => 'remove_friend', :id => friend.id, :memory_id => @memory.id },
+				      :loading => "Element.show('indicator')",
+				      :complete => "Element.hide('indicator')" %>
+      <% end %>
+      <% if friend.photo %>
+        <img src='<%= friend.photo.public_filename(:avatar) %>' class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %> was there'></a>
+      <% else %>
+        <img src='/images/icons/blue/user.gif' width='50' height='50'  class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %> was there'>
+      <% end %>
+      <%= draggable_element("shot_" + friend.id.to_s, :revert => true) %>
+    </li>
+<% end %>
+
+<div class='partial_notice' id='partial_notice'>
+	<% if flash[:partial_notice] -%>
+    <script>
+      <%= visual_effect(:fade, 'partial_notice', {:duration => 2.0}) %>
+    </script>
+    <img src='/images/icons/blue/exclamation.gif'>
+    <%= flash[:partial_notice] -%>
+	<% else %>
+		&nbsp;
+	<% end %>
+</div>

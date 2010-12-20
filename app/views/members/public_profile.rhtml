@@ -1,0 +1,75 @@
+<h3>Viewing <%= @user.nickname -%>'s profile</h3>
+
+<div class='friends'>
+  <fieldset>
+    <legend><%= @user.nickname %> has many friends</legend>
+    <% if @user.friends.size == 1 %>
+      1 of them is here on Music Knows.
+    <% else %>
+      <%= @user.friends.size %> of them are here on Music Knows.
+    <% end %>
+    <ul>
+      <% for friend in @user.friends %>
+        <li>
+          <a href='/members/profile/<%= friend.nickname %>'><%= friend.nickname %></a>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+</div>
+
+<% if @user.photo %>
+  <a href='<%= @user.photo.public_filename -%>' alt='Image link' title='Click for full size image'><img src='<%= @user.photo.public_filename(:thumb) -%>' class='thumb' id='thumb'></a>
+<% else %>
+  <img src='/images/icons/blue/user.gif' width='30' height='30'  class='thumb' alt='<%= @user.nickname %>' title='<%= @user.nickname %>'>
+<% end %>
+
+<p>
+  <b><%= @user.forename %> <%= @user.surname %></b>
+  <% if session[:user].id %>
+    <small><i>(<a href='/friends/add/<%= @user.id -%>'>Add as a friend?)</a></i></small>
+  <% end %>
+</p>
+
+<p>
+  <%= linkify(@user.description) %>
+</p>
+
+
+<% if @user.memories.size > 0 %>
+  <hr/>
+
+  <h4>Memories added</h4>
+  <ol>
+    <% for memory in @user.memories %>
+      <li>
+        <% if memory.day -%>
+          <a href='/<%= memory.year -%>/<%= memory.month -%>/<%= memory.day -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= MONTHS[memory.month] -%>, <%= memory.day.ordinalize -%> <%= memory.year -%>)
+        <% elsif memory.month -%>
+          <a href='/<%= memory.year -%>/<%= memory.month -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= MONTHS[memory.month] -%> <%= memory.year -%>)
+        <% else -%>
+          <a href='/<%= memory.year -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= memory.year -%>)
+        <% end -%>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
+
+<% if @user.comments.size > 0 %>
+  <hr/>
+
+  <h4>Comments</h4>
+  <ol>
+    <% for comment in @user.comments %>
+      <li>
+        <% if comment.memory.day -%>
+          <a href='/<%= comment.memory.year -%>/<%= comment.memory.month -%>/<%= comment.memory.day -%>/<%= comment.memory.url_name -%>#comment_<%= comment.id -%>'><%= comment.memory.title -%></a>
+        <% elsif comment.memory.month -%>
+          <a href='/<%= comment.memory.year -%>/<%= comment.memory.month -%>/<%= comment.memory.url_name -%>#comment_<%= comment.id -%>'><%= comment.memory.title -%></a>
+        <% else -%>
+          <a href='/<%= comment.memory.year -%>/<%= comment.memory.url_name -%>#comment_<%= comment.id -%>'><%= comment.memory.title -%></a>
+        <% end -%>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

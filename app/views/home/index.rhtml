@@ -1,0 +1,50 @@
+<h4 class='homepage_title'>Share Your Gig Reviews</h4>
+
+<% style = [ 'crowd1', 'crowd2', 'crowd3' ] %>
+
+<div class='<%= style[rand(style.length)] %>'>
+
+  <div class='latest_comments'>
+    <div class='title'>
+      Latest comments
+    </div>
+    <div class='list'>
+      <ul>
+        <% for comment in @latest_comments %>
+          <li><%= link_to truncate(comment.title, 30), :controller => "memory", :action => "details", :year => comment.memory.year, :month => comment.memory.month, :day => comment.memory.day, :url_name => comment.memory.url_name, :anchor => 'comment_' + comment.id.to_s %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class='latest_memories'>
+    <div class='title'>
+      Latest memories
+    </div>
+    <div class='list'>
+      <ul>
+        <% for memory in @latest_memories %>
+          <li><%= link_to truncate(memory.title, 30), :controller => "memory", :action => "details", :year => memory.year, :month => memory.month, :day => memory.day, :url_name => memory.url_name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class='latest_users'>
+    <div class='title'>
+      Latest users
+    </div>
+    <div class='list'>
+      <ul>
+        <% for user in @latest_users %>
+          <li><%= link_to user.nickname, :controller => "members", :action => "public_profile", :nickname => user.nickname %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class='homepage_signup'>
+    <a href='/register/'>Join today</a> and share your gig reviews
+  </div>
+
+</div>

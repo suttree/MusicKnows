@@ -1,0 +1,53 @@
+<h4>Share your experience</h4>
+
+<%= error_messages_for("memory") -%>
+<form action='/memory/save' method='post' class='memory' enctype='multipart/form-data'>
+
+<fieldset class='memory'>
+  <legend>Add your memory</legend>
+
+  <p class='hint'>
+    Choose a title for this memory and enter as much information as you can, such as why it was special, what celebrities you saw or who you went with.
+  </p>
+
+  <p><label for="memory_title">Title</label><br/>
+  <%= text_field :memory, :title, :size => 40 -%></p>
+
+  <p><label for="memory_body">Body</label><br/>
+  <%= text_area("memory", "body", "rows" => 15, "cols" => 40 ) -%></p>
+</fieldset>
+
+<fieldset class='memory'>
+  <legend>Who, what and when</legend>
+
+  <p class='hint'>
+    Tell us who you went to see and where you saw them. Bonus points if you can remember the exact date, otherwise just get as near as you can!
+  </p>
+
+  <p><label for="band">Artist/Band name</label><br/>
+  <input id="band" name="band" size="40" type="text" value="<%= @bands.join(", ") -%>" />
+  <br/>
+  <small>e.g. Kate Rusby, DJ Shadow or Muse</small>
+  </p>
+  <p><label for="memory_tags">Location/Venue</label><br/>
+  <input id="venue" name="venue" size="40" type="text" value="<%= @venues.join(", ") -%>" />
+  <br/>
+  <small>e.g. Brixton Academy, The Fox and Firkin or London</small>
+  </p>
+  <p><label for="memory_date">When did it happen?</label><br/>
+  <%= select_day( @memory.day, :include_blank => true ) -%>
+  <%= select_month( @memory.month, :include_blank => true ) -%>
+  <%= select_year( @memory.year, :start_year => 1900, :include_blank => true ) -%>
+  <br/>
+  <small>Fill in at least the year, leaving the month and/or day blank if you can't remember.</small>
+  </p>
+  <p><label for="memory_photo">Got a photo?</label><br/>
+  <%= file_field :photo, :uploaded_data -%>
+  <br/>
+  <small>If you've got a picture of your friends, or the event, you can upload it here.</small>
+  </p>
+  <p>
+  <%= submit_tag( "Save it lest I forget.." ) -%>
+  </p>
+</fieldset>
+</form>

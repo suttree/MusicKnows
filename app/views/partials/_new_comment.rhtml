@@ -1,0 +1,24 @@
+<form action='/memory/comment/<%= @memory.id -%>' method='post'>
+  <fieldset class='comment'>
+    <legend><img src="/images/icons/blue/comment.gif">&nbsp;Submit a new comment</legend>
+    <p><label for="comment_title">Title</label><br/>
+    <input id="comment_title" name="comment[title]" size="50" type="text" value="Re: <%= @memory.title -%>" /></p>
+
+    <p><label for="comment_body">Body</label><br/>
+    <%= text_area 'comment', 'body', :cols => 50, :rows => 10, :value => '' -%></p> 
+  </fieldset>
+
+  <fieldset class='comment'>
+    <legend><img src='/images/icons/blue/warning.gif'>&nbsp;Read me</legend>
+
+    <p class='hint'>
+      <br/>
+      <ol>
+        <li>Please be respectful and keep your comments on-topic.</li>
+        <li>If we think you're being offensive for no reason, we'll delete your comment.</li>
+        <li>Some html is allowed.</li>
+        <p><input type='submit' value='Submit comment'/></p>
+      </ol>
+    </p>
+  </fieldset>
+</form>

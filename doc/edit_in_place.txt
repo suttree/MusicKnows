@@ -1,0 +1,12 @@
+Ajax / Edit in Place
+
+Add this line to the controller to automatically wire up the save actions for the title field on the item class.
+in_place_edit_for :item, :title
+
+Use this line in your template to insert the edit in place control. Note that the last two options are optional. Omitting them will make a standard textbox.
+<%= in_place_editor_field :item, :title,{}, :rows=>10 %>
+
+Use this line in your stylesheet to customize the width of the default edit in place text editor field using CSS.
+.inplaceeditor-form input[type='text'] {
+      width:350px;
+}

@@ -1,0 +1,18 @@
+<h4 class='memory_comments'><img src="/images/icons/blue/comment.gif">&nbsp;Replying to comment</h4>
+
+<b><%= h(@parent_comment.title) -%></b>
+<a name='parent_comment_<%= @parent_comment.id -%>'></a>
+by <%= h(@parent_comment.user.nickname) -%>.
+
+<p>
+  <%= linkify(@parent_comment.body) -%>
+  <br/>
+  <span class='misc'>
+    <a href='/memory/reply_comment/<%= @parent_comment.id -%>'>Reply to this?</a>
+    <% if @parent_comment.user.id == session[:user].id -%>
+      (<a href='/memory/edit_comment/<%= @parent_comment.id -%>'>Edit this?</a>)
+    <% end -%>
+  </span>
+</p>
+
+<%= render_partial "partials/reply_comment" -%>

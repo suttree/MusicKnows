@@ -1,0 +1,24 @@
+<b><%= h(comment.title) -%></b>
+<a name='comment_<%= comment.id -%>'></a>
+by <a href='/members/profile/<%= comment.user.nickname -%>'><%= h(comment.user.nickname) -%></a>.
+
+<% if session[:user].admin? %>
+  <small><i>(<a href='/memory/report_spam/<%= comment.id -%>'>Report as spam and delete?)</a></i></small>
+<% end %>
+
+<p>
+  <%= linkify(comment.body) -%>
+  <br/>
+  <span class='misc'>
+    <a href='/memory/reply_comment/<%= comment.id -%>'>Reply to this?</a>
+    <% if comment.user.id == session[:user].id -%>
+      (<a href='/memory/edit_comment/<%= comment.id -%>'>Edit this?</a>)
+    <% end -%>
+  </span>
+</p>
+
+<% if comment.children.size > 0 -%>
+  <ol id="commentsub-<%= comment.id -%>" class="comment-sublist">
+    <%= render_collection_of_partials "partials/commentset", comment.children.sort_by {|c| c.id} -%>
+  </ol>
+<% end -%>

@@ -1,0 +1,63 @@
+<h3>Editing <%= @user.nickname -%>'s profile</h3>
+
+<p align='center'>
+  <a href='/members/profile/<%= @user.nickname -%>' title='Your public profile'>View your profile as others will see it</a>
+</p>
+
+<%= error_messages_for("user") -%>
+<form action='/members/update/' method='post' enctype='multipart/form-data' class='profile'>
+  <fieldset class='profile'>
+    <legend>Just the facts</legend>
+      <p><label for="user_forename">Forename</label><br/>
+      <%= text_field("user", "forename", "size" => 40 ) -%></p>
+
+      <p><label for="user_surname">Surname</label><br/>
+      <%= text_field("user", "surname", "size" => 40 ) -%></p>
+
+      <p><label for="user_description">About you...</label><br/>
+      <%= text_area("user", "description", "rows" => 10, "cols" => 40 ) -%></p>
+    </fieldset>
+
+    <fieldset class='profile'>
+      <legend>Vital statistics</legend>
+
+      <p><label for="user_email">Email</label><br/>
+      <%= text_field("user", "email", "size" => 40 ) -%></p>
+
+      <p><label for="user_date_of_birth">Date of birth</label><br/>
+        <%= date_select("user", "date_of_birth", :start_year => 1900, :order => [:day, :month, :year], :include_blank => true ) -%>
+        <br/>
+        <small><i>You don't look a day over 60.</i></small>
+      </p>
+
+      <p><label for="user_subscribe">Email updates</label><%= check_box("user", "subscribe") -%>
+        <br/>
+        <small><i>We won't spam you, we're just not like that.</i></small>
+      </p>
+
+      <p><label for="memory_photo">Got a photo?</label><br/>
+      <%= file_field :photo, :uploaded_data -%>
+      <br/>
+      <small><i>
+      <% if @user.photo -%>
+        <a href='<%= @user.photo.public_filename -%>' alt='Image link' title='Click for full size image'>1 picture already uploaded.</a> Uploading a new photo will overwrite this.
+      <% else %>
+        Make it a funny one.
+      <% end -%>
+      </i></small>
+
+      <p>
+        <%= submit_tag( "Update profile" ) -%>
+      </p>
+    </fieldset>
+<%= end_form_tag %>
+
+<br/>
+<form action='/members/update_password/' method='post'>
+  <p align='center'>
+    <b>Change your password?</b>
+    &nbsp;&nbsp;
+    <input id="user_new_password" name="user[new_password]" type="password" value="" />
+    <input type='submit' value='Update password'/>
+  </p>
+</form>

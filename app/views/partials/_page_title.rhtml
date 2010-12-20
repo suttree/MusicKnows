@@ -1,0 +1,21 @@
+<% if @memory && !@memory.title.blank? %>
+   <%= @memory.title %> (<%= SITE_NAME %>)
+<% elsif @memories %>
+  <% if params[:day] %>
+    <%= MONTHS[params[:month].to_i] %> <%= params[:day].to_i.ordinalize %>, <%= h(params[:year]) %> (<%= SITE_NAME %>)
+  <% elsif params[:month] %>
+    <%= MONTHS[params[:month].to_i] %> <%= h(params[:year]) %> (<%= SITE_NAME %>)
+  <% elsif params[:year] %>
+    <%= h(params[:year]) %> (<%= SITE_NAME %>)
+  <% end %>
+<% elsif @page_title %>
+  <%= @page_title %> (<%= SITE_NAME %>)
+<% elsif controller.action_name && controller.action_name != 'index' %>
+  <%= controller.controller_name.capitalize %> | <%= controller.action_name.capitalize %> (<%= SITE_NAME %>)
+<% elsif controller.controller_name && controller.controller_name != 'home' %>
+  <%= controller.controller_name.capitalize %> (<%= SITE_NAME %>)
+<% elsif controller.controller_name == 'home' && controller.action_name == 'index' %>
+  <%= 'Music Knows | Share Your Gig Reviews' %>
+<% else %>
+  <%= SITE_NAME %>
+<% end %>

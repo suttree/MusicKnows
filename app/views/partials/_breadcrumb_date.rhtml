@@ -1,0 +1,27 @@
+<h4 class='breadcrumb'>
+
+  <% if params[:month] && params[:day] -%>
+
+    Memories on <a href='/<%= h(params[:year]) -%>/<%= h(params[:month]) -%>'><%= MONTHS[params[:month].to_i] -%></a> <a href='/<%= h(params[:year]) -%>/<%= h(params[:month]) -%>/<%= h(params[:day]) -%>'><%= params[:day].to_i.ordinalize -%></a>, <a href='/<%= h(params[:year]) -%>'><%= h(params[:year]) -%></a>
+
+  <% elsif params[:month] -%>
+
+    Memories in <a href='/<%= h(params[:year]) -%>/<%= h(params[:month]) -%>'><%= MONTHS[params[:month].to_i] -%></a>, <a href='/<%= h(params[:year]) -%>'><%= h(params[:year]) -%></a>
+    
+  <% else -%>
+
+    Memories in <a href='/<%= h(params[:year]) -%>'><%= h(params[:year]) -%></a>
+    
+  <% end -%>
+
+  <br/>
+  <span class='nearby'>Nearby: 
+    <% if @nearby.size == 0 %>
+      <i>No memories nearby...</i> 
+    <% end %>
+    <% for date in @nearby %>
+      <a href='/<%= date['year'] %>'><%= date['year'] %></a>
+    <% end%>
+  </span>
+
+</h4>

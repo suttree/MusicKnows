@@ -1,0 +1,33 @@
+<h3>Register with Music Knows</h3>
+
+<%= error_messages_for("register") -%>
+<form action='/register/validate' method='post' class='register'>
+
+<fieldset class='register'>
+  <legend>Create your account</legend>
+
+  <p class='hint'>
+  Your nickname will be shown on your profile. Your email will be used to login and out of the site.
+  </p>
+  <p><label for="register_nickname">Nickname</label><br/>
+  <%= text_field("register", "nickname", "size" => 40 ) -%></p>
+
+  <p><label for="register_email">Email</label><br/>
+  <%= text_field("register", "email", "size" => 40 ) -%></p>
+</fieldset>
+
+<fieldset class='register'>
+  <legend>Choose a password</legend>
+
+  <p class='hint'>
+  Although we will store very little information about you, it is still wise to choose a password that is secure!
+  </p>
+  <p><label for="register_password">Password</label><br/>
+  <%= password_field("register", "password") -%></p>
+
+  <p><label for="register_password">Confirm password</label><br/>
+  <%= password_field("register", "password_confirmation") -%></p>
+  <%= submit_tag( "Register and create my account" ) -%>
+</fieldset>
+
+<%= end_form_tag %>

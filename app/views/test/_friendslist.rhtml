@@ -1,0 +1,31 @@
+<div class='friendslist_title' id='friendslist_title'>
+  <img src='/images/icons/blue/arrow_down.gif'>
+  Drag and drop your friends pictures below
+</div>
+
+<div class='friendslist_shelf'>
+  <% for id in session[:friends] %>
+    <% friend = User.find(id) %>
+    <div class='friendslist_thumb'>
+      <%= link_to_remote "Remove?",
+            :update => "friendslist",
+            :url => { :action => 'remove_friend', :id => friend.id },
+            :loading => "Element.show('indicator')",
+            :complete => "Element.hide('indicator')" %>
+      <% if friend.photo %>
+        <img src='<%= friend.photo.thumbnails[1].public_filename -%>' width='<%= friend.photo.thumbnails[1].width -%>' height='<%= friend.photo.thumbnails[1].height -%>' class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %>'>
+      <% else %>
+        <img src='/images/default.gif' width='50' height='50'  class='shot' id='shot_<%= friend.id %>' alt='<%= friend.nickname %>' title='<%= friend.nickname %>'>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  <% if flash[:partial_notice] -%>
+    <div class='partial_notice' id='partial_notice'>
+      <script>
+        <%= visual_effect(:fade, 'partial_notice', {:duration => 2.0}) %>
+      </script>
+      <img src='/images/icons/blue/exclamation.gif'>
+      <%= flash[:partial_notice] -%>
+    </div>
+  <% end %>

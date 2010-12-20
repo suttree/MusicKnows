@@ -1,0 +1,25 @@
+<h3>Login to Music Knows</h3>
+
+<%= error_messages_for("login") -%>
+<%= start_form_tag :action => 'validate' %> 
+  <fieldset class='login'>
+    <legend>Enter your details</legend
+    <p><label for="member_email">Email</label><br/>
+    <%= text_field("login", "email" ) -%></p>
+
+    <p><label for="member_password">Password</label><br/>
+    <%= password_field("login", "password") -%></p>
+
+    <%= submit_tag( "Login to Music Knows" ) -%>
+  </fieldset>
+<%= end_form_tag %>
+  <fieldset class='login'>
+    <legend>Need some help?</legend>
+    <p>Music Knows is a music sharing community. You can share your gig reviews with other users and read about bands and gigs.</p>
+    <p>Music Knows is free to join. If you don't have an account you can <a href='/register/'>sign up today</a>.</p>
+    <p><b>Forgotten your password?</b></p>
+    <%= start_form_tag :action => 'forgotten_password' %> 
+      <%= text_field("login", "email" ) -%></p>
+      <%= submit_tag( "Send me a reminder" ) -%>
+    <% end_form_tag %>
+  </fieldset>

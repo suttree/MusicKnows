@@ -1,0 +1,23 @@
+<%= render_partial "partials/breadcrumb_date" -%>
+
+<% if @memories.blank? -%>
+  <p>
+    <i>No matching entries found!</i>
+  </p>
+<% else -%>
+  <p>
+    <ol>
+    <% for memory in @memories -%>
+      <li>
+        <% if memory.day -%>
+          <a href='/<%= memory.year -%>/<%= memory.month -%>/<%= memory.day -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= MONTHS[memory.month] -%>, <%= memory.day.ordinalize -%> <%= memory.year -%>)
+        <% elsif memory.month -%>
+          <a href='/<%= memory.year -%>/<%= memory.month -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= MONTHS[memory.month] -%> <%= memory.year -%>)
+        <% else -%>
+          <a href='/<%= memory.year -%>/<%= memory.url_name -%>'><%= memory.title -%></a> (<%= memory.year -%>)
+        <% end -%>
+      </li>
+    <% end -%>
+    </ol>
+  </p>
+<% end -%>

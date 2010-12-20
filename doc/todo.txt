@@ -1,0 +1,26 @@
+Music Knows - Because there's no DRM in Memory
+==============================================
+
+Include option to add link for youtube video
+
+Include option for pullquotes
+
+User has one photo and memory has one photo, i.e.
+
+user.photo.thumbnails[0] and [1] and [2]
+
+Update site to reflect this!
+
+Favicon
+
+Fix Safari rendering of the sidebar this page (http://0.0.0.0:3000/2002/cara-dillon#comment_2)
+
+Fix rendering bugs on all browsers.
+
+Create accounts and pictures for Glen, Andy, Vanesa and anyone else I can think of.
+
+Paginate tag lists (eventually)
+
+Include users with dob on relevant pages - months, days, years, etc.
+
+Find Music Knows keyword lists from backups.

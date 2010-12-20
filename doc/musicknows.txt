@@ -1,0 +1,129 @@
+MusicKnows
+==========
+
+Keep it simple.
+
+"Music companies fuck everything up with DRM and Copyright, the one thing left they don't own are our memories."
+
+Use :through to do funky band/venue stuff - http://matthewman.net/articles/2006/01/06/rails-activerecord-goes-through
+
+Auto-suggest band and song data from musicbrainz, cddb or ???
+
+Offer a title, description and photo upload feature
+
+Tagging for locations, tagging for descriptions
+
+Add friends to a memory, band, venue, location or picture
+
+Re-read Tom's review of that portfolio site
+
+Make it into a passive, episodic gaming experience
+
+Ways to view the underlying data:
+
+	by date (like a blog)
+	by artist
+	by venue
+	by user
+	by keyword
+
+(http://www.thetimewhen.co.uk/)
+
+From dokuwiki
+=============
+
+* MusicMemories - DRM can't stop you remembering. 
+Location based music tagging website. 
+Where you heard a song, why it makes it special, social network of music-related memories. Needs venues, locations, friends and reasons. Like Folklore for Choooons. 
+
+Use these plugins - 
+
+http://richcollins.net/svn/acts_as_voteable/README
+http://errtheblog.com/post/14
+http://happygiraffe.net/blog/archives/2006/05/08/timedfilestore-plugin-0-1
+http://julik.textdriven.com/svn/tools/rails_plugins/simple_search/README
+
+http://juggernaut.rubyforge.org/
+
+
+(Music Knows - Because there's no DRM in Memory!)
+
+(Music Knows - Because there's no DRM for memory).
+(Music Knows - Because no-one can stop you forgetting).
+(Music Knows - blah)
+
+User POV
+========
+
+The proposition is - share your memories
+					 talk about music
+					 show off
+
+The reward is - find people with similar interests, 
+				talk about music, 
+				organise your friends around events, 
+				publicise upcoming events
+				find out about your music habits
+
+
+So the form for entering data should be....
+
+By date? or By venue? or By artist/band? or By record?
+
+	By date gives you options of 'The 60s', 'The 70s', '1994', '1982', or '24th Sept. 2006' etc.
+	By date gives you decades, years or specific date/time.
+
+	By venue just gives you an input box to enter, with autocomplete on venue names
+	
+	By artist/band gives you an input box to enter, with autocomplete again (possibly coming from musicbrainz)
+	
+	By record gives you the same input box to enter, with autocomplete from musicbrainz
+	
+So the initial options are Who, What, Where and When (Band, Album, Venue, Date)
+
+
+Flash Friends App
+=================
+
+This is the core idea at the moment - sorting through polaroids of your friends like Coverflow.
+
+The app will read from an xml file the list of friend ids and the path it can find those images.
+Each friend will have a nick, photograph and id specificed in the xml
+The xml will also have a 'submit' path, that tells it where to submit the ids.
+
+In effect, the xml will govern how the app works, so that changes can be made at a later stage by me, without the need for a flash developer.
+
+The app itself will show all your friends in the bottom half (scrollable) and a group area in the top half, where you can pick and move certain friends to. So, if I wanted to collect up all the firends i went to see the black crowes with, I'd drag them from below and drop them up top. Hit save and the ids of those friends will be sent to the database along with the event details.
+
+Ideally, I like to be able to choose a friends picture by selecting from their list of public avatars, or from my own pictures that I attach to them. Not a must-have though.
+
+
+
+
+
+http://www.plasticbag.org/archives/2006/08/on_carbonmade/
+
+what *service* do we provide?
+
+	are we in any sense software?
+	it's just a way of making and meeting friends.
+	so judge the userbase and offer a PRO account from day 1
+	going PRO gives you more storage for pictures, is that all?
+	
+how can i make it a *game*?
+
+can i sell it to *time out*?
+
+why would anyone *use*?
+
+	because it's EASY to use. survival of the easiest
+
+
+Navigation - the website must be EASY to use. navigation options must be at a minimal and they must tell
+              you where you will go and what will happen there. 'Search and select' (http://m3mnoch.wordpress.com/2006/10/02/the-ps3-and-psp-interface/).
+
+ugc music recommendations - questing for gigs!
+
+-- I've got my fuzz all tipped to play
+-- Let's have a baby and call it Hotel Illness
+-- etc.

@@ -1,0 +1,57 @@
+Sie Template
+=============
+
+This is a simple site template that contains the basic ruby on rails code
+for home, help, about, contact, register and login systems. It is intended
+to make setting up a site a litle bit easier, since the boring stuff is
+already done. This code has a frozen version of Rails and gems using
+
+rake rails:freeze:gems
+rake freeze_other_gems
+
+Any new gems can be frozen by editing the file lib/tasks/gems.rake
+
+Plugins already installed
+=========================
+
+Error mailer (http://wiki.rubyonrails.com/rails/pages/HowtoConfigureTheErrorPageForYourRailsApp)
+
+acts_as_taggable (http://wiki.rubyonrails.org/rails/pages/Acts+As+Taggable+Plugin)
+
+file_column (http://wiki.rubyonrails.org/rails/pages/File+Column+Plugin)
+
+debug views (http://www.realityforge.org/articles/2006/03/20/rails-plugin-to-help-debug-views)
+
+whitelist (http://svn.techno-weenie.net/projects/plugins/white_list/)
+
+Debug views (http://www.realityforge.org/articles/2006/03/20/rails-plugin-to-help-debug-views)
+
+Sanitize (http://ideoplex.com/id/1138/sanitize-html-in-ruby)
+
+Suggested plugins to install
+============================
+
+SqlSessionStore (http://railsexpress.de/blog/articles/2006/09/15/sqlsessionstore-now-available-as-a-plugin)
+
+comments (http://www.ecolocal.com)
+
+acts_as_versioned (http://ar-versioned.rubyforge.org/)
+
+active merchant (http://home.leetsoft.com/am)
+
+mass mailing (http://www.myowndb.com/blog/?p=20)
+
+edit in place (see doc/edit_in_place.txt)
+
+acts as textile (http://errtheblog.com/post/14)
+
+timed cache expiry (http://happygiraffe.net/blog/archives/2006/05/08/timedfilestore-plugin-0-1)
+
+search engine (http://julik.textdriven.com/svn/tools/rails_plugins/simple_search/README)
+
+acts as voteable (http://richcollins.net/svn/acts_as_voteable/README)
+
+HTML Snippets
+=============
+
+Forms (http://www.skyrocket.be/2006/01/09/semantic-horizontal-forms/)

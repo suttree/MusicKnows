@@ -1,0 +1,17 @@
+<h4 class='homepage_title'>Contact Music Knows</h4>
+
+<p>
+	<form action='/help/contact_send/' method='post'>
+    Your message:
+    <br/>
+		<textarea rows='10' cols='50' name='message'></textarea>
+		<br/>
+		<br/>
+           Your email address:
+           <br/>
+           <input type='text' name='email' value='<%= session[:user].email if session[:user] -%>'>
+		<br/>
+		<br/>
+		<input type='submit' value='Contact Music Knows'>
+	</form>
+</p>

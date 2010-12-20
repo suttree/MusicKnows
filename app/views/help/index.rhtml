@@ -1,0 +1,25 @@
+<h4 class='help_title'>Help Using Music Knows</h4>
+
+<p>
+  Music Knows is a community for sharing memories of gigs and festivals you've been to with your friends.
+  <br/>
+  <br/>
+  If you need any help using this website you can either contact us using the form below (remember to include your details so that we can respond to you), or you can post a comment which will get picked up by our users.
+</p>
+
+<p>
+  <h5>Contact Music Knows</h5>
+	<form action='/help/contact_send/' method='post'>
+    Your message:
+    <br/>
+		<textarea rows='10' cols='50' name='message'></textarea>
+		<br/>
+		<br/>
+           Your email address:
+           <br/>
+           <input type='text' name='email' value='<%= session[:user].email if session[:user] -%>'>
+		<br/>
+		<br/>
+		<input type='submit' value='Contact Music Knows'>
+	</form>
+</p>
